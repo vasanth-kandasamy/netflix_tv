@@ -1,29 +1,11 @@
 (function () {
   'use strict';
 
-  var frame = document.getElementById('frame');
-  var splash = document.getElementById('splash');
+  var TARGET_URL = 'https://www.youtube.com/tv';
 
-  // Hide splash once the iframe finishes its initial load.
-  frame.addEventListener('load', function () {
-    splash.classList.add('hidden');
-    setTimeout(function () {
-      splash.style.display = 'none';
-    }, 500);
-    // Make sure the iframe owns focus so the remote talks to YouTube.
-    try { frame.contentWindow.focus(); } catch (e) {}
-  });
-
-  // Fallback: hide splash after 8s even if `load` never fires.
-  setTimeout(function () {
-    splash.classList.add('hidden');
-  }, 8000);
-
-  // webOS LG remote: Back key = 461. Close the app on Back.
+  // webOS LG remote: Back key = 461. ESC = simulator/desktop.
   document.addEventListener('keydown', function (e) {
-    var k = e.keyCode;
-    // 461 = LG remote BACK, 27 = ESC (simulator)
-    if (k === 461 || k === 27) {
+    if (e.keyCode === 461 || e.keyCode === 27) {
       e.preventDefault();
       closeApp();
     }
@@ -41,8 +23,9 @@
     window.close();
   }
 
-  // Keep focus on the iframe so D-pad input is routed to YouTube TV.
-  window.addEventListener('focus', function () {
-    try { frame.contentWindow.focus(); } catch (e) {}
-  });
+  // Brief splash, then navigate. Full-page navigation is required because
+  // youtube.com sends X-Frame-Options: SAMEORIGIN and cannot be iframed.
+  setTimeout(function () {
+    window.location.replace(TARGET_URL);
+  }, 600);
 })();

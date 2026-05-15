@@ -1,0 +1,18 @@
+{
+  "id": "com.vasanth.youtubetv",
+  "version": "1.0.0",
+  "vendor": "Vasanth",
+  "type": "web",
+  "main": "index.html",
+  "title": "YouTube TV",
+  "appDescription": "Fullscreen launcher for YouTube TV on webOS",
+  "icon": "icon.png",
+  "largeIcon": "largeIcon.png",
+  "iconColor": "red",
+  "bgColor": "#000000",
+  "resolution": "1920x1080",
+  "uiRevision": 2,
+  "disableBackHistoryAPI": true,
+  "supportTouchMode": "none",
+  "handlesRelaunch": false
+}

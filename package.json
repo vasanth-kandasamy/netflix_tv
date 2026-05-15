@@ -1,0 +1,13 @@
+{
+  "name": "youtube-tv-webos",
+  "version": "1.0.0",
+  "description": "Fullscreen YouTube TV launcher for LG webOS.",
+  "private": true,
+  "scripts": {
+    "package": "ares-package . -o dist",
+    "install-tv": "ares-install --device tv $(ls -t dist/*.ipk | head -n 1)",
+    "launch": "ares-launch --device tv com.vasanth.youtubetv",
+    "inspect": "ares-inspect --device tv --app com.vasanth.youtubetv",
+    "deploy": "npm run package && npm run install-tv && npm run launch"
+  }
+}

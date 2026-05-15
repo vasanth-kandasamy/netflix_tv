@@ -23,9 +23,11 @@
     window.close();
   }
 
-  // Brief splash, then navigate. Full-page navigation is required because
-  // youtube.com sends X-Frame-Options: SAMEORIGIN and cannot be iframed.
+  // Full-page navigation (youtube.com blocks iframing via X-Frame-Options).
+  // Use a longer delay so the webOS simulator finishes wiring its BrowserView
+  // before we navigate away (otherwise it throws "Render frame was disposed
+  // before WebFrameMain could be accessed"). On a real TV this is fine.
   setTimeout(function () {
-    window.location.replace(TARGET_URL);
-  }, 600);
+    window.location.href = TARGET_URL;
+  }, 2500);
 })();
